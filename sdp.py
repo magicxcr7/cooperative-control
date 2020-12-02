@@ -17,7 +17,16 @@ def plot_position(players, no=0):
     plt.title("time {:04d}".format(no))
     plt.scatter(players[:6,0], players[:6,1], c='k', s=25)
     plt.scatter(players[6:,0], players[6:,1], c='b', s=20)
-
+    
+    if no == iteration:
+        for i in range(len(players)):
+            for j in range(len(players)):
+                if(i != j):
+                    distance = np.linalg.norm(players[i]-players[j])
+                    if distance < sensing_d:
+                        plt.plot( [players[i,0], players[j,0]], [players[i,1], players[j,1]], 'r-')
+        for i in range(1,15):
+            plt.savefig("./imgs/{:04d}.png".format(no+i))
     plt.savefig("./imgs/{:04d}.png".format(no))
     plt.close()
     #plt.show()
@@ -29,7 +38,7 @@ size = 100
 _immobile = 6
 _mobile = 11
 sensing_d = 40
-iteration = 300
+iteration = 500
 
 path = "./imgs"
 

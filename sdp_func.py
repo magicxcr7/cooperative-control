@@ -1,7 +1,7 @@
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
-from sdp import sensing_d
+from sdp import sensing_d, _immobile, _mobile
 
 #actions = np.array( [[0,1], [1,0], [0,-1], [-1,0], [0,0]] )
 actions = np.array([
@@ -13,7 +13,7 @@ actions = np.array([
 def compute_action_profile(players, pi, iters):
     beta = 1 + iters/300
 
-    max_u = -99999
+    max_u = -999999
     max_i = -1
 
     for i in range(len(actions)):
@@ -23,8 +23,13 @@ def compute_action_profile(players, pi, iters):
             continue
         else:
             ui = 0
-
-            for pj in range(len(players)):
+            for pj in range(_immobile):
+                distance = np.linalg.norm(reached - players[pj])
+                if distance > sensing_d:
+                    ui += 1* (distance**2) ##weighted
+                # else:
+                #     ui += 0.8*(distance**2)
+            for pj in range(_immobile, _immobile+_mobile):
                 
                 if pj == pi:
                     continue
