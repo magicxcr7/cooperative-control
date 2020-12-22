@@ -3,6 +3,12 @@ import random
 action_name = ['paper', 'scissors', 'stone']
 action = [0, 1, 2]
 
+def count_expected_winrate(a, b):
+    return a[0]*b[2] + a[1]*b[0] + a[2]*b[1]
+
+
+
+
 def init_player1():
     init_list = [0,0,0]
     init_list[0] = round(random.uniform(0,1),3)
