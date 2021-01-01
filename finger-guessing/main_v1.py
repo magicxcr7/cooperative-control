@@ -92,7 +92,7 @@ if __name__ == "__main__":
         #plt.plot(hhh[1], label="param (0.05, 0.05)")
         #plt.plot(hhh[2], label="param (0.1, 0.1)")
         #plt.plot(hhh[3], label="param (0.2, 0.2)")
-        plt.title("Env fixed result : {} ".format(params[i]))
+        plt.title("Env result : {} ".format(params[i]))
         plt.xlabel("Iter")
         plt.ylabel("prob")
         plt.legend(loc='upper right')
